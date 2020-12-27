@@ -1,0 +1,107 @@
+<html>
+  <head>
+    <link
+      rel="stylesheet"
+      href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+      integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p"
+      crossorigin="anonymous"
+    />
+
+    <link rel="stylesheet" href="/css/home.css" />
+  </head>
+
+  <body>
+    <h1>TODO App</h1>
+  <!--list action triggered when submit button clicks-->
+    <form action="/list" method="post">
+      <!--Todo displaycategory div-->
+      <div class="description">
+        <p>
+          <label for="DESCRIPTION">DESCRIPTION</label>
+          <input
+            type="text"
+            name="Description"
+            placeholder="What do you need to do ?"
+            required
+          />
+        </p>
+      </div>
+         <!-- Category display div-->
+      <div class="category">
+        <label for="category">Category</label><br />
+        <select id="category" name="category" required>
+          <option value="">Choose a category</option>
+          <option value="Personal">Personal</option>
+
+          <option value="Work">Work</option>
+
+          <option value="Cleaning">Cleaning</option>
+          <option value="School">School</option>
+          <option value="other">other</option>
+        </select>
+      </div>
+       <!--Date display div-->
+      <div class="date">
+        <label for="date">Due DATE</label><br />
+        <input
+          id="date"
+          type="date"
+          name="taskdate"
+          value="yyyy-mm-dd"
+          min="2010-01-01"
+          max="2030-01-01"
+          required
+        />
+      </div>
+      <br />
+
+      <div class="add">
+        <button class="addbutton" id="" type="submit ">
+          <i class="fas fa-plus"></i>ADD TASK
+        </button>
+      </div>
+    </form>
+
+    <div class="display">
+      <% for(let i of task_list ){%>
+
+      <div class="displayoutput" style="font-size: 20px">
+        <input
+          class="checkbox"
+          id="checkbox-container"
+          type="checkbox"
+          name="<%=i._id%>"
+        />
+
+        <%= i.Description%>
+
+        <button
+          class="displaycategory"
+          style="
+            text-align: center;
+            height: 50px;
+            width: 100px;
+            margin: 10px;
+            margin-left: 80%;
+          "
+        >
+          <%= i.Category%>
+        </button>
+        <div class="taskdate" style="font-size: 20px">
+          <i class="far fa-calendar-alt"></i> <%= i.task%>
+        </div>
+
+        <div class="delete">
+          <a href="/delete-task/?id=<%=i._id%>">
+            <button class="deletebutton" id="delete" type="submit">
+              <i class="fas fa-trash-alt"></i>
+              DELETE
+            </button>
+          </a>
+        </div>
+      </div>
+
+      <%}%>
+    </div>
+  </body>
+</html>
